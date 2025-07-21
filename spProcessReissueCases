@@ -361,7 +361,7 @@ BEGIN
       GOTO ENDPROC
 
    ERROR_HANDLER:
-        INSERT INTO tblErrorLog (CaseId, Process, ErrorMsg) VALUES (@CaseId, 'spProcessReissueCases', @sErrorText)
+        INSERT INTO tblErrorLog (CaseId, Process, ErrorMsg) VALUES (NULL, 'spProcessReissueCases', @sErrorText)
       PRINT 'spProcessReissueCases --> ' + @sErrorText 
 
       IF @bSendMail=1
