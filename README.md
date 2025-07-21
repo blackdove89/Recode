@@ -1,10 +1,6 @@
 # Recode
 new codes
-USE RETIRE
-ALTER TABLE tblerrorlog
-ALTER COLUMN ErrorMsg VARCHAR(2000)
--------------------------------------------------------
---spCalcGrossToNet_main
+
 USE [RETIRE]
 GO
 
