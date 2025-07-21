@@ -19,7 +19,7 @@ CREATE PROCEDURE [dbo].[spProcessCases]
    ,@bSendFile              BIT = 1
    ,@bDebug                 BIT = 0
    ,@sDebugEmail            VARCHAR(150) = NULL
-   ,@CaseId                 INT = NULL  -- ADDED THIS PARAMETER
+   
 AS 
    /****************************************************************************
 
@@ -197,12 +197,7 @@ BEGIN
    ***************************************************************************/
 
 
-         IF @CaseId is not NULL
-   BEGIN
-    PRINT 'spGenerateMFData '''', ' + @FPrefix + ', ' + STR(@bTestMF,1) + ', CaseId:' + CAST(@CaseId AS VARCHAR(20))
-    EXEC @n = spGenerateMFData '', @FPrefix, @bTestMF, @bStatusUpdate, @bSendMail, @CaseId
-END
-ELSE
+
 BEGIN
 
    PRINT 'spGenerateMFData '''', ' + @FPrefix + ', ' + STR(@bTestMF,1) + ', '
@@ -401,7 +396,7 @@ BEGIN
 
    ERROR_HANDLER:
        INSERT INTO tblErrorLog (CaseId, Process, ErrorMsg) 
-   VALUES (@CaseId, 'spProcessCases', @sErrorText)
+   VALUES (NULL, 'spProcessCases', @sErrorText)
 
       PRINT 'spProcessCases --> ' + @sErrorText 
 
