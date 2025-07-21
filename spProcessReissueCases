@@ -20,7 +20,7 @@ CREATE PROCEDURE [dbo].[spProcessReissueCases]
    ,@bSendFile              BIT = 1
    ,@bDebug                 BIT = 0
    ,@sDebugEmail            VARCHAR(150) = NULL
-     ,@CaseId                 INT = NULL  -- ADDED THIS PARAMETER
+   
 AS 
    /****************************************************************************
 
@@ -191,12 +191,7 @@ BEGIN
    /***************************************************************************
       Generate the CSA/CSF raw data file.
    ***************************************************************************/
-   IF @CaseId is not NULL
-   BEGIN
-    PRINT 'spGenerateReissueData ' + @FPrefix + ', ' + STR(@bStatusUpdate,1) + ', CaseId:' + CAST(@CaseId AS VARCHAR(20))
-   EXEC @n = spGenerateReissueData @FPrefix, @bStatusUpdate, @bSendMail, @CaseId
-END
-ELSE
+
 BEGIN
 
    PRINT 'spGenerateReissueData ' + @FPrefix + ', ' + STR(@bStatusUpdate,1)
